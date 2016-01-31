@@ -81,4 +81,11 @@ public class BabySitterTest {
         BabySitter babySitter = new BabySitter(19, 22, 22);
         assertEquals(BabySitter.RATE_TILL_BED_TIME * 3, babySitter.calculatePayment());
     }
+
+    @Test
+    public void babySitterCalculatesPaymentFromStartTillMidnight() {
+        BabySitter babySitter = new BabySitter(19, 0, 22);
+        assertEquals(BabySitter.RATE_TILL_BED_TIME * 3 +
+                BabySitter.RATE_BED_TIME_TILL_MIDNIGHT * 2, babySitter.calculatePayment());
+    }
 }

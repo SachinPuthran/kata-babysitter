@@ -12,6 +12,7 @@ public class BabySitter {
     public static final int DEFAULT_BED_TIME = 21;
 
     public static final int RATE_TILL_BED_TIME = 12;
+    public static final int RATE_BED_TIME_TILL_MIDNIGHT = 8;
 
     private int startTime;
     private int endTime;
@@ -51,6 +52,19 @@ public class BabySitter {
     }
 
     public int calculatePayment() {
-        return RATE_TILL_BED_TIME * (endTime - startTime);
+        return RATE_TILL_BED_TIME * getHoursTillBedTime() +
+                RATE_BED_TIME_TILL_MIDNIGHT * getHoursBetweenBedTimeAndMidnight();
+    }
+
+    private int getHoursBetweenBedTimeAndMidnight() {
+        int tempEndTime = endTime;
+        if (endTime >= 0 && endTime <= 4) {
+            tempEndTime += 24;
+        }
+        return tempEndTime - bedTime;
+    }
+
+    private int getHoursTillBedTime() {
+        return bedTime - startTime;
     }
 }
