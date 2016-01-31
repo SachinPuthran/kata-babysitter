@@ -71,8 +71,14 @@ public class BabySitterTest {
     }
 
     @Test
-    public void babySitterCalculatesPaymentForStartTimeToBedTimeWhichIsAlsoTheEndTime() {
+    public void babySitterCalculatesPaymentFor2HoursTillBedTime() {
         BabySitter babySitter = new BabySitter(19, 21, BabySitter.DEFAULT_BED_TIME);
-        assertEquals(24, babySitter.calculatePayment());
+        assertEquals(BabySitter.RATE_TILL_BED_TIME * 2, babySitter.calculatePayment());
+    }
+
+    @Test
+    public void babySitterCalculatesPaymentFor3HoursTillBedTime() {
+        BabySitter babySitter = new BabySitter(19, 22, 22);
+        assertEquals(BabySitter.RATE_TILL_BED_TIME * 3, babySitter.calculatePayment());
     }
 }

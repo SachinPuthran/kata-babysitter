@@ -11,6 +11,8 @@ public class BabySitter {
     public static final int MAX_END_TIME = 4;
     public static final int DEFAULT_BED_TIME = 21;
 
+    public static final int RATE_TILL_BED_TIME = 12;
+
     private int startTime;
     private int endTime;
     private int bedTime;
@@ -49,6 +51,6 @@ public class BabySitter {
     }
 
     public int calculatePayment() {
-        return 24;
+        return RATE_TILL_BED_TIME * (endTime - startTime);
     }
 }
