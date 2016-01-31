@@ -3,13 +3,16 @@ package babysitter;
 public class BabySitter {
 
     private int startTime;
+    private int endTime;
 
     public BabySitter() {
         this.startTime = 17;
+        this.endTime = 4;
     }
 
-    public BabySitter(int startTime) {
+    public BabySitter(int startTime, int endTime) {
         this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public int getStartTime() {
@@ -17,6 +20,6 @@ public class BabySitter {
     }
 
     public int getEndTime() {
-        return 4;
+        return endTime;
     }
 }
