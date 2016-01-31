@@ -35,4 +35,13 @@ public class BabySitterTest {
     public void babySitterDoesNotAcceptInvalidStartTimeAndThrowsNotAvailableException() {
         new BabySitter(12, 2);
     }
+
+    @Test
+    public void babySitterDoesNotAcceptInvalidStartTimeAndThrowsNotAvailableExceptionWithAnAcceptableMessage() {
+        try {
+            new BabySitter(5, 4);
+        } catch (NotAvailableException ex) {
+            assertEquals("I'm sorry, I cannot start before 5:00 PM", ex.getMessage());
+        }
+    }
 }

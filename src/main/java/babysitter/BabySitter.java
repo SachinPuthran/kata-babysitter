@@ -13,7 +13,7 @@ public class BabySitter {
     }
 
     public BabySitter(int startTime, int endTime) {
-        if(startTime < 17 || startTime > 4) {
+        if(startTime < 17 && startTime > 4) {
             throw new NotAvailableException("I'm sorry, I cannot start before 5:00 PM");
         }
         this.startTime = startTime;
