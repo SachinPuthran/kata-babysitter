@@ -71,43 +71,10 @@ public class BabySitterTest {
     }
 
     @Test
-    public void babySitterCalculatesPaymentFor2HoursTillBedTime() {
-        BabySitter babySitter = new BabySitter(19, 21, BabySitter.DEFAULT_BED_TIME);
-        assertEquals(BabySitter.RATE_TILL_BED_TIME * 2, babySitter.calculatePayment());
-    }
-
-    @Test
-    public void babySitterCalculatesPaymentFor3HoursTillBedTime() {
-        BabySitter babySitter = new BabySitter(19, 22, 22);
-        assertEquals(BabySitter.RATE_TILL_BED_TIME * 3, babySitter.calculatePayment());
-    }
-
-    @Test
-    public void babySitterCalculatesPaymentFromStartTillMidnight() {
-        BabySitter babySitter = new BabySitter(19, 0, 22);
-        assertEquals(BabySitter.RATE_TILL_BED_TIME * 3 +
-                BabySitter.RATE_BED_TIME_TILL_MIDNIGHT * 2, babySitter.calculatePayment());
-    }
-
-    @Test
-    public void babySitterCalculatesPaymentFromStartTillBeforeBedTime() {
-        BabySitter babySitter = new BabySitter(18, 20, 21);
-        assertEquals(BabySitter.RATE_TILL_BED_TIME * 2, babySitter.calculatePayment());
-    }
-
-    @Test
-    public void babySitterCanCalculatePaymentForFullDefaultHours() {
-        BabySitter babySitter = new BabySitter();
-        assertEquals(BabySitter.RATE_TILL_BED_TIME * 4 +
-                BabySitter.RATE_BED_TIME_TILL_MIDNIGHT * 3 +
-                BabySitter.RATE_MIDNIGHT_TILL_END * 4, babySitter.calculatePayment());
-    }
-
-    @Test
     public void babySitterCalculatesPaymentForStartTillEnd() {
         BabySitter babySitter = new BabySitter(20, 1, 21);
-        assertEquals(BabySitter.RATE_TILL_BED_TIME +
-                BabySitter.RATE_BED_TIME_TILL_MIDNIGHT * 3 +
-                BabySitter.RATE_MIDNIGHT_TILL_END, babySitter.calculatePayment());
+        assertEquals(PaymentCalculator.RATE_TILL_BED_TIME +
+                PaymentCalculator.RATE_BED_TIME_TILL_MIDNIGHT * 3 +
+                PaymentCalculator.RATE_MIDNIGHT_TILL_END, babySitter.calculatePayment());
     }
 }
