@@ -41,7 +41,7 @@ public class BabySitterTest {
         try {
             new BabySitter(5, 4);
         } catch (NotAvailableException ex) {
-            assertEquals("I'm sorry, I cannot start before 5:00 PM", ex.getMessage());
+            assertEquals(BabySitter.START_TIME_NOT_AVAILABLE_MESSAGE, ex.getMessage());
         }
     }
 }
