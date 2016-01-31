@@ -1,5 +1,7 @@
 package babysitter;
 
+import exception.NotAvailableException;
+
 public class BabySitter {
 
     private int startTime;
@@ -11,6 +13,9 @@ public class BabySitter {
     }
 
     public BabySitter(int startTime, int endTime) {
+        if(startTime < 17 || startTime > 4) {
+            throw new NotAvailableException("I'm sorry, I cannot start before 5:00 PM");
+        }
         this.startTime = startTime;
         this.endTime = endTime;
     }

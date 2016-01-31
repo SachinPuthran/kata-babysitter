@@ -2,6 +2,7 @@ package babysitter;
 
 import static org.junit.Assert.assertEquals;
 
+import exception.NotAvailableException;
 import org.junit.Test;
 
 public class BabySitterTest {
@@ -28,5 +29,10 @@ public class BabySitterTest {
         BabySitter babySitter = new BabySitter(19, 11);
         assertEquals(11, babySitter.getEndTime());
         assertEquals(19, babySitter.getStartTime());
+    }
+
+    @Test(expected = NotAvailableException.class)
+    public void babySitterDoesNotAcceptInvalidStartTimeAndThrowsNotAvailableException() {
+        new BabySitter(12, 2);
     }
 }
