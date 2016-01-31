@@ -18,6 +18,10 @@ public class BabySitter {
     private int endTime;
     private int bedTime;
 
+    private int startTimeForCalc;
+    private int endTimeForCalc;
+    private int bedTimeForCalc;
+
     public BabySitter() {
         this.startTime = EARLIEST_START_TIME;
         this.endTime = MAX_END_TIME;
@@ -29,6 +33,7 @@ public class BabySitter {
         this.startTime = startTime;
         this.endTime = endTime;
         this.bedTime = bedTime;
+        setTimeForCalculation();
     }
 
     private void validateBabySittingTime(int startTime, int endTime) {
@@ -57,14 +62,30 @@ public class BabySitter {
     }
 
     private int getHoursBetweenBedTimeAndMidnight() {
-        int tempEndTime = endTime;
-        if (endTime >= 0 && endTime <= 4) {
-            tempEndTime += 24;
+        if (endTimeForCalc < bedTimeForCalc) {
+            return 0;
         }
-        return tempEndTime - bedTime;
+        return endTimeForCalc - bedTimeForCalc;
     }
 
     private int getHoursTillBedTime() {
-        return bedTime - startTime;
+        if (endTimeForCalc < bedTimeForCalc) {
+            return endTimeForCalc - startTimeForCalc;
+        }
+        return bedTimeForCalc - startTimeForCalc;
     }
+
+    private void setTimeForCalculation() {
+        this.bedTimeForCalc = adjustTimeFor24HourFormatForCalculation(bedTime);
+        this.startTimeForCalc = adjustTimeFor24HourFormatForCalculation(startTime);
+        this.endTimeForCalc = adjustTimeFor24HourFormatForCalculation(endTime);
+    }
+
+    private int adjustTimeFor24HourFormatForCalculation(int hour) {
+        if (hour >= 0 && hour <= 4) {
+            hour += 24;
+        }
+        return hour;
+    }
+
 }
