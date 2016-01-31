@@ -69,4 +69,10 @@ public class BabySitterTest {
         BabySitter babySitter = new BabySitter(expectedStartTime, expectedEndTime, expectedBedTime);
         assertEquals(expectedBedTime, babySitter.getBedTime());
     }
+
+    @Test
+    public void babySitterCalculatesPaymentForStartTimeToBedTimeWhichIsAlsoTheEndTime() {
+        BabySitter babySitter = new BabySitter(19, 21, BabySitter.DEFAULT_BED_TIME);
+        assertEquals(24, babySitter.calculatePayment());
+    }
 }

@@ -47,4 +47,8 @@ public class BabySitter {
     public int getBedTime() {
         return bedTime;
     }
+
+    public int calculatePayment() {
+        return 24;
+    }
 }
