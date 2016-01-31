@@ -13,6 +13,7 @@ public class BabySitter {
 
     public static final int RATE_TILL_BED_TIME = 12;
     public static final int RATE_BED_TIME_TILL_MIDNIGHT = 8;
+    public static final int RATE_MIDNIGHT_TILL_END = 16;
 
     private int startTime;
     private int endTime;
@@ -26,6 +27,7 @@ public class BabySitter {
         this.startTime = EARLIEST_START_TIME;
         this.endTime = MAX_END_TIME;
         this.bedTime = DEFAULT_BED_TIME;
+        setTimeForCalculation();
     }
 
     public BabySitter(int startTime, int endTime, int bedTime) {
@@ -58,14 +60,18 @@ public class BabySitter {
 
     public int calculatePayment() {
         return RATE_TILL_BED_TIME * getHoursTillBedTime() +
-                RATE_BED_TIME_TILL_MIDNIGHT * getHoursBetweenBedTimeAndMidnight();
+                RATE_BED_TIME_TILL_MIDNIGHT * getHoursBetweenBedTimeAndMidnight() +
+                RATE_MIDNIGHT_TILL_END * getHoursBetweenMidnightAndEnd();
     }
 
     private int getHoursBetweenBedTimeAndMidnight() {
         if (endTimeForCalc < bedTimeForCalc) {
             return 0;
         }
-        return endTimeForCalc - bedTimeForCalc;
+        if (endTimeForCalc < 24) {
+            return endTimeForCalc - bedTimeForCalc;
+        }
+        return 24 - bedTimeForCalc;
     }
 
     private int getHoursTillBedTime() {
@@ -73,6 +79,13 @@ public class BabySitter {
             return endTimeForCalc - startTimeForCalc;
         }
         return bedTimeForCalc - startTimeForCalc;
+    }
+
+    private int getHoursBetweenMidnightAndEnd() {
+        if (endTimeForCalc <= 24) {
+            return 0;
+        }
+        return endTimeForCalc - 24;
     }
 
     private void setTimeForCalculation() {
@@ -87,5 +100,4 @@ public class BabySitter {
         }
         return hour;
     }
-
 }

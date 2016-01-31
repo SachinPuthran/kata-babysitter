@@ -94,4 +94,20 @@ public class BabySitterTest {
         BabySitter babySitter = new BabySitter(18, 20, 21);
         assertEquals(BabySitter.RATE_TILL_BED_TIME * 2, babySitter.calculatePayment());
     }
+
+    @Test
+    public void babySitterCanCalculatePaymentForFullDefaultHours() {
+        BabySitter babySitter = new BabySitter();
+        assertEquals(BabySitter.RATE_TILL_BED_TIME * 4 +
+                BabySitter.RATE_BED_TIME_TILL_MIDNIGHT * 3 +
+                BabySitter.RATE_MIDNIGHT_TILL_END * 4, babySitter.calculatePayment());
+    }
+
+    @Test
+    public void babySitterCalculatesPaymentForStartTillEnd() {
+        BabySitter babySitter = new BabySitter(20, 1, 21);
+        assertEquals(BabySitter.RATE_TILL_BED_TIME +
+                BabySitter.RATE_BED_TIME_TILL_MIDNIGHT * 3 +
+                BabySitter.RATE_MIDNIGHT_TILL_END, babySitter.calculatePayment());
+    }
 }
